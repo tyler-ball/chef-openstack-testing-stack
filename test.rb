@@ -19,6 +19,8 @@ ENDCONFIG
 machine 'mario' do
   tag 'itsa_me'
   machine_options :vagrant_config => mario_config
+  role 'allinone-compute'
+  role 'os-image-upload'
   converge true
 end
 
