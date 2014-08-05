@@ -1,9 +1,13 @@
-# This file exists mainly to ensure we don't pick up knife.rb from anywhere else
-local_mode true
-config_dir "#{File.expand_path('..', __FILE__)}/" # Wherefore art config_dir, chef?
+# See http://docs.opscode.com/config_rb_knife.html for more information on knife configuration options
 
-# # Chef 11.14 binds to "localhost", which interferes with port forwarding on IPv6 machines for some reason
-begin
-  chef_zero.host '127.0.0.1'
-  rescue
-end
+current_dir = File.dirname(__FILE__)
+log_level                :info
+log_location             STDOUT
+node_name                "jjasghar"
+client_key               "#{current_dir}/jjasghar.pem"
+validation_client_name   "jj-openstack-chef-validator"
+validation_key           "#{current_dir}/jj-openstack-chef-validator.pem"
+chef_server_url          "https://api.opscode.com/organizations/jj-openstack-chef"
+cache_type               'BasicFile'
+cache_options( :path => "#{ENV['HOME']}/.chef/checksums" )
+cookbook_path            ["#{current_dir}/../cookbooks"]

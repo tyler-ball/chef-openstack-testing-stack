@@ -1,0 +1,5 @@
+{
+  "name": "jj-openstack-chef-validator",
+  "validator": true,
+  "public_key": "-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAyPCMDnWYbMKbEYUc29IV\nus2Fcwm0okay50rSliA9lNNAPJ/kWhxy/vtEH6ySDCWbkgbOcxYfr1QtQonw3kdW\nF7MzVM1Scui/DLYOXQDocuHgBFxI13D0SXSmL6nHHcNhDdwFE96f1TnjZNcKBgEQ\nz+0glbNi30Mzi27h5YbsuXyO2Tg+qceMUaRC1KxhbgOdaerdKhHKZOc+23Q6PGW8\nnE0yxG/LvRW1L8erDHZRvyj7JFuEcarKZFg2LqZbnpvnuFYD0TgbcXDDgu6K1wKb\nuUKDdL9ue3ppVVdHPUSPsid0aMNtHky8sMrE3ZuH4rIMLpFmDBNX7dAXQ1g6PmCJ\nowIDAQAB\n-----END PUBLIC KEY-----\n\n"
+}
