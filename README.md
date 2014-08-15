@@ -24,6 +24,9 @@ mysql> flush privileges;
 mysql> quit
 ```
 
+There has been a fix pushed up https://review.openstack.org/#/c/114407/ but as of me writing this it hasn't been merged. I'm going to do my best to push it along because
+this works like a champ.
+
 Here is a openrc file that you should add to `/root/openrc` and `source /root/openrc`
 ```python
 export OS_AUTH_URL="http://127.0.0.1:5000/v2.0"
