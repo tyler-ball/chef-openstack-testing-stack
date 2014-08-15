@@ -26,31 +26,3 @@ machine 'mario' do
   file '/etc/chef/openstack_data_bag_secret','/Users/jasghar/repo/singlestack/.chef/encrypted_data_bag_secret'
   converge true
 end
-
-# machine_execute 'echo export OS_AUTH_URL="http://127.0.0.1:5000/v2.0" > /root/openrc' do
-#   machine 'mario'
-# end
-
-# machine_execute 'echo export HOST_IP="127.0.0.1" > /root/openrc' do
-#   machine 'mario'
-# end
-
-# machine_execute 'echo export SERVICE_HOST="$HOST_IP" > /root/openrc' do
-#   machine 'mario'
-# end
-
-# machine_execute 'echo export OS_TENANT_NAME="service" > /root/openrc' do
-#   machine 'mario'
-# end
-
-# machine_execute 'echo export OS_USERNAME="nova" > /root/openrc' do
-#   machine 'mario'
-# end
-
-# machine_execute 'echo export OS_PASSWORD="mypass" > /root/openrc' do
-#   machine 'mario'
-# end
-
-# machine_execute 'echo export GLANCE_HOST="$HOST_IP" > /root/openrc' do
-#   machine 'mario'
-# end
