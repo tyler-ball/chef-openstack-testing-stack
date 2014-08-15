@@ -47,3 +47,8 @@ Boot that image!
 ```shell
 # nova boot test --image cirros --flavor 1 --poll
 ```
+
+If you want to destroy everything
+```shell
+$ chef-client -z destroy_all.rb
+```
