@@ -18,11 +18,6 @@ mario_config = <<-ENDCONFIG
   config.vm.network "private_network", ip: "192.168.100.60"
 ENDCONFIG
 
-# luigi_config = <<-ENDCONFIG
-#   config.vm.box = "precise64"
-#   config.vm.network "forwarded_port", guest: 459, host: 9488
-# ENDCONFIG
-
 machine 'mario' do
   machine_options :vagrant_config => mario_config
   role 'allinone-compute'
@@ -32,8 +27,30 @@ machine 'mario' do
   converge true
 end
 
-# machine 'luigi' do
-#   tag 'itsa_me'
-#   machine_options :vagrant_config => luigi_config
-#   converge true
+# machine_execute 'echo export OS_AUTH_URL="http://127.0.0.1:5000/v2.0" > /root/openrc' do
+#   machine 'mario'
+# end
+
+# machine_execute 'echo export HOST_IP="127.0.0.1" > /root/openrc' do
+#   machine 'mario'
+# end
+
+# machine_execute 'echo export SERVICE_HOST="$HOST_IP" > /root/openrc' do
+#   machine 'mario'
+# end
+
+# machine_execute 'echo export OS_TENANT_NAME="service" > /root/openrc' do
+#   machine 'mario'
+# end
+
+# machine_execute 'echo export OS_USERNAME="nova" > /root/openrc' do
+#   machine 'mario'
+# end
+
+# machine_execute 'echo export OS_PASSWORD="mypass" > /root/openrc' do
+#   machine 'mario'
+# end
+
+# machine_execute 'echo export GLANCE_HOST="$HOST_IP" > /root/openrc' do
+#   machine 'mario'
 # end

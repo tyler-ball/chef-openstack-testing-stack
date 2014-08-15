@@ -25,7 +25,7 @@
       },
       "compute": {
         "network": {
-          "public_interface": "eth0",
+          "public_interface": "eth1",
           "service_type": "nova"
         },
         "config": {
