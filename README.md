@@ -11,94 +11,21 @@ $ bundle exec berks vendor cookbooks
 $ openssl rand -base64 512 | tr -d '\r\n' > .chef/openstack_data_bag_secret
 ```
 
+Then you'll want to add a `validation.pem` to `.chef/`. If you don't have one you can set up a free account at [hosted chef](https://manage.opscode.com/signup) and just jack that. It'll also ask for a `nodienode.pem` you can just copy the `validation.pem` to that file.
+This is all transient data and not important, it's just needs a `.pem` for chef-zero to be happy.
+
+You'll also want to add/create an organization for the `knife.rb`. It seems that the `knife data bag create` requires it.
+
 You'll need to create some Databags to make this work:
 
 You need to have some databags when you run the stackforge without the `developer_mode: true`.
 
-You need four databags : *user_passwords*, *db_passwords*, *service_passwords*, *secrets*.
-
+You need four databags : *user_passwords*, *db_passwords*, *service_passwords*, *secrets*. I have a already created the data_bags/ directory, so you shouldn't need to make them
 Each data bag need the following item to be created.
 
-### user_passwords 
-ITEM example :
-```js
-{"id" : "admin", "admin" : "mypass"}
-```
-
- - admin
- - guest
-
-```bash
-# make sure you're in your singlestack/ directory
-$ for item in admin guest ; do
->  knife data bag create user_passwords $item --secret-file .chef/openstack_data_bag_secret;
-> done
-```
-
-### db_passwords
-ITEM example :
-```js
-{"id" : "nova", "nova" : "mypass"}
-```
-
- - nova
- - horizon
- - keystone
- - glance
- - ceilometer
- - neutron
- - cinder
- - heat
- - dash
-
-```bash
-# make sure you're in your singlestack/ directory
-$ for item in nova horizon keystone glance ceilmeter neutron cinder heat dash ; do
->  knife data bag create db_passwords $item --secret-file .chef/openstack_data_bag_secret;
-> done
-```
-
-### service_passwords
-ITEM example :
-```js
-{"id" : "openstack-image", "openstack-image" : "mypass"}
-```
-
- - openstack-image
- - openstack-compute
- - openstack-block-storage
- - openstack-orchestration
- - openstack-network
- - rbd
-
-```bash
-# make sure you're in your singlestack/ directory
-$ for item in openstack-image openstack-compute openstack-block-storage openstack-orchestration openstack-network rbd ; do
->  knife data bag create service_passwords $item --secret-file .chef/openstack_data_bag_secret;
-> done
-```
-
-### secrets
-ITEM example :
-```js
-{"id" : "openstack_identity_bootstrap_token", "openstack_identity_bootstrap_token" : "mytoken"}
-```
-
- - openstack_identity_bootstrap_token
- - neutron_metadata_secret
-
-```bash
-# make sure you're in your singlestack/ directory
-$ for item in openstack_identity_bootstrap_token neutron_metadata_secret ; do
->  knife data bag create secrets $p --secret-file ~/.chef/openstack_data_bag_secret;
-> done
-```
 
 After the data_bags are created you'll want to open up the `aio-nova.rb` or `aio-neutron.rb` to have it point to your
  `openstack_data_bag_secret` like how I did here: `/Users/jasghar/repo/singlestack/.chef/openstack_data_bag_secret'`
-
-Then you'll want to add a `validation.pem` to `.chef/`. If you don't have one you can set up a free account at [hosted chef](https://manage.opscode.com/signup) and just jack that. It'll also ask for a `nodienode.pem` you can just copy the `validation.pem` to that file.
-This is all transient data and not important, it's just needs a `.pem` for chef-zero to be happy.
 
 ## Kick off chef-client
 

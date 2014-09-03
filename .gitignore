@@ -2,6 +2,4 @@ Berksfile.lock
 Gemfile.lock
 cookbooks/
 notes.md
-.chef/
 nodes/
-data_bags/
