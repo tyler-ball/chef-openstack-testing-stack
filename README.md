@@ -4,15 +4,12 @@
 $ vagrant add centos65 http://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_centos-6.5_chef-provisionerless.box
 $ mkdir ~/code
 $ cd ~/code
-$ git clone https://github.com/opscode/chef-metal.git
 $ git clone https://github.com/jjasghar/singlestack.git
 $ cd singlestack
 $ bundle install
-$ cd ../chef-metal
-$ bundle && rake install
-$ cd ../singlestack
-$ gem install chef-metal-vagrant
 $ bundle exec berks vendor cookbooks
+$ mkdir .chef
+$ openssl rand -base64 512 | tr -d '\r\n' > .chef/openstack_data_bag_secret
 ```
 
 You'll need to create some Databags to make this work:
@@ -137,19 +134,19 @@ How to test the machine is set up correctly, after you source the above: (as roo
 # nova service-list && nova hypervisor-list && nova image-list
 ```
 
-How to test the machine is set up correctly, after you source the above:
+How to test the machine is set up correctly, after you source the above: (as root)
 
 ```bash
 # nova service-list && nova hypervisor-list && nova image-list # TODO create automated serverspec or something around this
 ```
 
-Boot that image!
+Boot that image! (as root)
 
 ```bash
 # nova boot test --image cirros --flavor 1 --poll
 ```
 
-If you want to destroy everything, run this from the single-stack repo.
+If you want to destroy everything, run this from the `single-stack/` repo.
 
 ```shell
 $ chef-client -z destroy_all.rb
