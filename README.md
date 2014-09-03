@@ -13,13 +13,103 @@ $ bundle && rake install
 $ cd ../singlestack
 $ gem install chef-metal-vagrant
 $ bundle exec berks vendor cookbooks
+```
+
+You'll need to create some Databags to make this work:
+
+You need to have some databags when you run the stackforge without the `developer_mode: true`.
+
+You need four databags : *user_passwords*, *db_passwords*, *service_passwords*, *secrets*.
+
+Each data bag need the following item to be created.
+
+### user_passwords 
+ITEM example :
+```js
+{"id" : "admin", "admin" : "mypass"}
+```
+
+ - admin
+ - guest
+
+```bash
+# make sure you're in your singlestack/ directory
+$ for item in admin guest ; do
+>  knife data bag create user_passwords $item --secret-file .chef/openstack_data_bag_secret;
+> done
+```
+
+### db_passwords
+ITEM example :
+```js
+{"id" : "nova", "nova" : "mypass"}
+```
+
+ - nova
+ - horizon
+ - keystone
+ - glance
+ - ceilometer
+ - neutron
+ - cinder
+ - heat
+ - dash
+
+```bash
+# make sure you're in your singlestack/ directory
+$ for item in nova horizon keystone glance ceilmeter neutron cinder heat dash ; do
+>  knife data bag create db_passwords $item --secret-file .chef/openstack_data_bag_secret;
+> done
+```
+
+### service_passwords
+ITEM example :
+```js
+{"id" : "openstack-image", "openstack-image" : "mypass"}
+```
+
+ - openstack-image
+ - openstack-compute
+ - openstack-block-storage
+ - openstack-orchestration
+ - openstack-network
+ - rbd
+
+```bash
+# make sure you're in your singlestack/ directory
+$ for item in openstack-image openstack-compute openstack-block-storage openstack-orchestration openstack-network rbd ; do
+>  knife data bag create service_passwords $item --secret-file .chef/openstack_data_bag_secret;
+> done
+```
+
+### secrets
+ITEM example :
+```js
+{"id" : "openstack_identity_bootstrap_token", "openstack_identity_bootstrap_token" : "mytoken"}
+```
+
+ - openstack_identity_bootstrap_token
+ - neutron_metadata_secret
+
+```bash
+# make sure you're in your singlestack/ directory
+$ for item in openstack_identity_bootstrap_token neutron_metadata_secret ; do
+>  knife data bag create secrets $p --secret-file ~/.chef/openstack_data_bag_secret;
+> done
+```
+
+## Kick off chef-client
+
+Now you should be good to start up `chef-client`!
+
+```bash
 $ chef-client -z vagrant_linux.rb aio-nova.rb
 $ cd ~/.chef/vms
 $ vagrant ssh
 ```
 
 This will eventually fail on glance restarting (https://bugs.launchpad.net/glance/+bug/1279000), this is due to a utf8 issue which we are working on, a quick fix is:
-```shell
+```bash
 $ mysql -u root -pilikerandompasswords glance
 mysql> alter table migrate_version convert to character set utf8 collate utf8_unicode_ci;
 mysql> flush privileges;
@@ -40,17 +130,17 @@ export OS_PASSWORD="mypass"
 export GLANCE_HOST="$HOST_IP"
 ```
 
-How to test the machine is set up correctly, after you source the above:
-```shell
+How to test the machine is set up correctly, after you source the above: (as root)
+```bash
 # nova service-list && nova hypervisor-list && nova image-list
 ```
 
-Boot that image!
-```shell
+Boot that image! (as root)
+```bash
 # nova boot test --image cirros --flavor 1 --poll
 ```
 
-If you want to destroy everything, run this from the repo.
-```shell
+If you want to destroy everything, run this from the `singlestack/` repo.
+```bash
 $ chef-client -z destroy_all.rb
 ```
