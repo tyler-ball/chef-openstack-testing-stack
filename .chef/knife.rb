@@ -6,7 +6,7 @@ log_location             STDOUT
 node_name                "nodienode"
 client_key               "#{current_dir}/nodienode.pem"
 validation_client_name   "chef-validator"
-validation_key           "#{current_dir}/.chef/validator.pem"
+validation_key           "#{current_dir}/validator.pem"
 chef_server_url          "https://api.opscode.com/organizations/my_awesome_org"
 cache_type               'BasicFile'
 cache_options( :path => "#{ENV['HOME']}/.chef/checksums" )
