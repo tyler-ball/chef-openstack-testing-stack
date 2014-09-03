@@ -1,6 +1,5 @@
 require 'chef_metal'
 
-
 mario_config = <<-ENDCONFIG
   config.vm.box = "centos65"
   config.vm.network "forwarded_port", guest: 443, host: 9443
@@ -18,22 +17,11 @@ mario_config = <<-ENDCONFIG
   config.vm.network "private_network", ip: "192.168.100.60"
 ENDCONFIG
 
-# luigi_config = <<-ENDCONFIG
-#   config.vm.box = "precise64"
-#   config.vm.network "forwarded_port", guest: 459, host: 9488
-# ENDCONFIG
-
 machine 'mario' do
   machine_options :vagrant_config => mario_config
   role 'allinone-compute'
   role 'os-image-upload'
-  environment = "vagrant-aio-neutron"
+  chef_environment = "vagrant-aio-neutron"
   file '/etc/chef/openstack_data_bag_secret','/Users/jasghar/repo/singlestack/.chef/encrypted_data_bag_secret'
   converge true
 end
-
-# machine 'luigi' do
-#   tag 'itsa_me'
-#   machine_options :vagrant_config => luigi_config
-#   converge true
-# end

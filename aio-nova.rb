@@ -1,6 +1,5 @@
 require 'chef_metal'
 
-
 mario_config = <<-ENDCONFIG
   config.vm.box = "centos65"
   config.vm.network "forwarded_port", guest: 443, host: 9443

@@ -95,6 +95,12 @@ $ for item in openstack_identity_bootstrap_token neutron_metadata_secret ; do
 > done
 ```
 
+After the data_bags are created you'll want to open up the `aio-nova.rb` or `aio-neutron.rb` to have it point to your
+ `openstack_data_bag_secret` like how I did here: `/Users/jasghar/repo/singlestack/.chef/openstack_data_bag_secret'`
+
+Then you'll want to add a `validation.pem` to `.chef/`. If you don't have one you can set up a free account at [hosted chef](https://manage.opscode.com/signup) and just jack that. It'll also ask for a `nodienode.pem` you can just copy the `validation.pem` to that file.
+This is all transient data and not important, it's just needs a `.pem` for chef-zero to be happy.
+
 ## Kick off chef-client
 
 Now you should be good to start up `chef-client`!
