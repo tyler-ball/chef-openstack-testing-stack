@@ -1,4 +1,4 @@
-source "http://supermarket.getchef.com"
+source "https://supermarket.getchef.com"
 
 cookbook 'apache2', '1.9.6'
 cookbook 'apt', '2.3.8'
