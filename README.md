@@ -1,5 +1,7 @@
 # Single stack with chef-metal
 
+If you want a tl;dr here's a [youtube video](https://www.youtube.com/watch?v=GBtIRfvLzW0) of me converging this repo.
+
 ```shell
 $ vagrant add centos65 http://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_centos-6.5_chef-provisionerless.box
 $ mkdir ~/code
