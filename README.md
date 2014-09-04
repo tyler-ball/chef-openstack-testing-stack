@@ -80,6 +80,9 @@ Boot that image! (as root)
 # nova boot test --image cirros --flavor 1 --poll
 ```
 
+If you would like to use the dashboard you should go to https://localhost:9443 and the username password is `admin/mypass`.
+
+
 If you want to destroy everything, run this from the `single-stack/` repo.
 
 ```bash
