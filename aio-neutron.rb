@@ -21,7 +21,7 @@ machine 'mario' do
   machine_options :vagrant_config => mario_config
   role 'allinone-compute'
   role 'os-image-upload'
-  chef_environment = "vagrant-aio-neutron"
+  chef_environment 'vagrant-aio-neutron'
   file '/etc/chef/openstack_data_bag_secret','/Users/jasghar/repo/singlestack/.chef/encrypted_data_bag_secret'
   converge true
 end
