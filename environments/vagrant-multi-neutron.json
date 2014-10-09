@@ -17,6 +17,31 @@
         "bind_interface": "eth1"
       },
       "endpoints": {
+        "identity-bind": {
+            "host": "0.0.0.0"
+        },
+          "identity-api": {
+              "host": "0.0.0.0"
+          },
+          "identity-admin": {
+            "host": "0.0.0.0"
+          },
+          "identity-admin-bind": {
+            "host": "0.0.0.0"
+          },
+          "image-api-bind": {
+            "host": "0.0.0.0"
+          },
+          "compute-api-bind": {
+            "host": "0.0.0.0"
+          },
+          "compute-ec2-api-bind": {
+            "host": "0.0.0.0"
+          },
+          "network-api-bind": {
+            "host": "0.0.0.0"
+          },
+        "bind-host": "0.0.0.0",
         "host": "192.168.100.60",
         "mq": {
           "host": "192.168.100.60"
@@ -25,8 +50,14 @@
           "host": "192.168.100.60"
         },
         "endpoints": {
-          "identity-bind": {
-            "host": "192.168.100.60"
+          "identity-api": {
+            "host": "0.0.0.0"
+          },
+          "identity-admin": {
+            "host": "0.0.0.0"
+          },
+          "identity-admin-bind": {
+            "host": "0.0.0.0"
           }
         },
         "network": {
