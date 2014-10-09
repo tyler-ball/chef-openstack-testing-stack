@@ -10,23 +10,53 @@
   "override_attributes": {
     "mysql": {
       "allow_remote_root": true,
-      "root_network_acl": "%"
+      "root_network_acl": ["%"]
     },
     "openstack": {
       "identity": {
         "bind_interface": "eth1"
       },
       "endpoints": {
-        "host": "192.168.3.60",
+        "identity-bind": {
+            "host": "0.0.0.0"
+        },
+          "identity-api": {
+              "host": "0.0.0.0"
+          },
+          "identity-admin": {
+            "host": "0.0.0.0"
+          },
+          "identity-admin-bind": {
+            "host": "0.0.0.0"
+          },
+          "image-api-bind": {
+            "host": "0.0.0.0"
+          },
+          "compute-api-bind": {
+            "host": "0.0.0.0"
+          },
+          "compute-ec2-api-bind": {
+            "host": "0.0.0.0"
+          },
+          "network-api-bind": {
+            "host": "0.0.0.0"
+          },
+        "bind-host": "0.0.0.0",
+        "host": "192.168.100.60",
         "mq": {
-          "host": "192.168.3.60"
+          "host": "192.168.100.60"
         },
         "db": {
-          "host": "192.168.3.60"
+          "host": "192.168.100.60"
         },
-        "developer_mode": true,
         "endpoints": {
-          "identity-bind": {
+          "identity-api": {
+            "host": "0.0.0.0"
+          },
+          "identity-admin": {
+            "host": "0.0.0.0"
+          },
+          "identity-admin-bind": {
             "host": "0.0.0.0"
           }
         },
@@ -36,7 +66,7 @@
             "enable_isolated_metadata": "True"
           },
           "metadata": {
-            "nova_metadata_ip": "192.168.3.60"
+            "nova_metadata_ip": "192.168.100.60"
           },
           "openvswitch": {
             "tunnel_id_ranges": "1:1000",
