@@ -1,5 +1,5 @@
 {
-  "name": "vagrant-multi-neutron",
+  "name": "vagrant-multi-nova",
   "description": "Environment used in testing the upstream cookbooks and reference Chef repository with vagrant. To be used with the Vagrantfile-multi-neutron vagrantfile. Defines the necessary attributes for a working mutltinode (1 controller/n computes) openstack deployment, using neutron (with gre tunnels between hosts) for the networking component.",
   "cookbook_versions": {
   },
@@ -49,30 +49,12 @@
         "db": {
           "host": "192.168.100.60"
         },
-        "endpoints": {
-          "identity-api": {
-            "host": "0.0.0.0"
-          },
-          "identity-admin": {
-            "host": "0.0.0.0"
-          },
-          "identity-admin-bind": {
-            "host": "0.0.0.0"
-          }
-        },
         "network": {
-          "debug": "True",
           "dhcp": {
             "enable_isolated_metadata": "True"
           },
           "metadata": {
             "nova_metadata_ip": "192.168.100.60"
-          },
-          "openvswitch": {
-            "tunnel_id_ranges": "1:1000",
-            "enable_tunneling": "True",
-            "tenant_network_type": "gre",
-            "local_ip_interface": "eth2"
           },
           "api": {
             "bind_interface": "eth1"
@@ -87,31 +69,35 @@
           },
           "image_upload": true,
           "upload_images": [
-            "cirros",
-            "ubuntu"
+            "cirros"
           ],
           "upload_image": {
-            "ubuntu": "http://cloud-images.ubuntu.com/precise/current/precise-server-cloudimg-amd64-disk1.img",
             "cirros": "https://launchpad.net/cirros/trunk/0.3.0/+download/cirros-0.3.0-x86_64-disk.img"
           }
         },
         "compute": {
-          "xvpvnc_proxy": {
-            "bind_interface": "eth1"
-          },
-          "novnc_proxy": {
-            "bind_interface": "eth1"
-          },
           "libvirt": {
             "virt_type": "qemu"
           },
           "network": {
             "public_interface": "eth0",
-            "service_type": "neutron"
+            "service_type": "nova"
           },
           "config": {
             "ram_allocation_ratio": 5.0
+          },
+         "networks": [
+          {
+            "label": "public",
+            "ipv4_cidr": "192.168.10.0/24",
+            "num_networks": "1",
+            "network_size": "255",
+            "bridge": "br100",
+            "bridge_dev": "br100",
+            "dns1": "8.8.8.8",
+            "dns2": "8.8.4.4"
           }
+         ]
         }
       }
     }

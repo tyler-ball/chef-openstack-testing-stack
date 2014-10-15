@@ -1,7 +1,7 @@
 require 'chef_metal'
 
 mario_config = <<-ENDCONFIG
-  config.vm.box = "centos65"
+  config.vm.box = "trusty64"
   config.vm.network "forwarded_port", guest: 443, host: 9443
   config.vm.network "forwarded_port", guest: 4002, host: 4002
   config.vm.network "forwarded_port", guest: 5000, host: 5000
