@@ -21,13 +21,12 @@ ENDCONFIG
 
 machine 'controller' do
   machine_options :vagrant_config => controller_config
-  role 'os-compute-single-controller-no-network'
+  role 'os-compute-single-controller'
   recipe 'openstack-network::identity_registration'
-  role 'os-network-openvswitch'
   role 'os-network-dhcp-agent'
   role 'os-network-metadata-agent'
   role 'os-network-server'
-  chef_environment 'vagrant-multi-neutron'
+  chef_environment 'vagrant-multi-nova'
   file '/etc/chef/openstack_data_bag_secret','/Users/jasghar/repo/singlestack/.chef/encrypted_data_bag_secret'
   converge true
 end
@@ -48,7 +47,7 @@ ENDCONFIG
 machine 'compute1' do
   machine_options :vagrant_config => compute1_config
   role 'os-compute-worker'
-  chef_environment 'vagrant-multi-neutron'
+  chef_environment 'vagrant-multi-nova'
   file '/etc/chef/openstack_data_bag_secret','/Users/jasghar/repo/singlestack/.chef/encrypted_data_bag_secret'
   converge true
 end
@@ -69,7 +68,7 @@ ENDCONFIG
 machine 'compute2' do
   machine_options :vagrant_config => compute2_config
   role 'os-compute-worker'
-  chef_environment 'vagrant-multi-neutron'
+  chef_environment 'vagrant-multi-nova'
   file '/etc/chef/openstack_data_bag_secret','/Users/jasghar/repo/singlestack/.chef/encrypted_data_bag_secret'
   converge true
 end
