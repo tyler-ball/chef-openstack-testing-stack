@@ -6,16 +6,12 @@ If you want a tl;dr here's a [youtube video](https://www.youtube.com/watch?v=GBt
 $ vagrant add centos65 http://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_centos-6.5_chef-provisionerless.box
 $ mkdir ~/code
 $ cd ~/code
-$ git clone https://github.com/jjasghar/singlestack.git
-$ cd singlestack
+$ git clone https://github.com/jjasghar/chef-openstack-testing-stack.git shortstack
+$ cd shortstack
 $ bundle install
 $ bundle exec berks vendor cookbooks
+$ ruby -e "require 'openssl'; puts OpenSSL::PKey::RSA.new(2048).to_pem" > .chef/validation.pem
 ```
-
-Then you'll want to add a `validation.pem` to `.chef/`. If you don't have one you can set up a free account at
-[hosted chef](https://manage.opscode.com/signup) and just jack that. Copy the `chef-validator.pem` and edit the local
-`knife.rb` to fit the set up you have. :grin: This is all transient data and not important, it's just needs a `.pem`
-for chef-zero to be happy.
 
 You need four databags : *user_passwords*, *db_passwords*, *service_passwords*, *secrets*. I have a already created
 the `data_bags/` directory, so you shouldn't need to make them, if you do something's broken.
