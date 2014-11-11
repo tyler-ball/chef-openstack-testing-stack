@@ -15,7 +15,7 @@ controller_config = <<-ENDCONFIG
     v.customize ["modifyvm", :id, "--nicpromisc3", "allow-all"]
     v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
   end
-  config.vm.network "private_network", ip: "192.168.100.60"
+  config.vm.network "public_network", ip: "192.168.100.60"
   config.vm.network "private_network", ip: "172.16.10.60"
 ENDCONFIG
 
@@ -26,6 +26,7 @@ machine 'controller' do
   role 'os-network-dhcp-agent'
   role 'os-network-metadata-agent'
   role 'os-network-server'
+  role 'os-compute-worker'
   chef_environment 'vagrant-multi-nova'
   file '/etc/chef/openstack_data_bag_secret','/Users/jasghar/repo/singlestack/.chef/encrypted_data_bag_secret'
   converge true
@@ -40,7 +41,7 @@ compute1_config = <<-ENDCONFIG
     v.customize ["modifyvm", :id, "--nicpromisc3", "allow-all"]
     v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
   end
-  config.vm.network "private_network", ip: "192.168.100.61"
+  config.vm.network "public_network", ip: "192.168.100.61"
   config.vm.network "private_network", ip: "172.16.10.61"
 ENDCONFIG
 
@@ -61,7 +62,7 @@ compute2_config = <<-ENDCONFIG
     v.customize ["modifyvm", :id, "--nicpromisc3", "allow-all"]
     v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
   end
-  config.vm.network "private_network", ip: "192.168.100.62"
+  config.vm.network "public_network", ip: "192.168.100.62"
   config.vm.network "private_network", ip: "172.16.10.62"
 ENDCONFIG
 
