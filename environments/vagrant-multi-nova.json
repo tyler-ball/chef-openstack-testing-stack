@@ -81,7 +81,7 @@
                     "virt_type": "qemu"
                 },
                 "network": {
-                    "public_interface": "eth1",
+                    "public_interface": "eth0",
                     "service_type": "nova",
                     "multi_host": "true"
                 },
