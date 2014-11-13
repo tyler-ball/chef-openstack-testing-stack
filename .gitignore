@@ -1,9 +1,11 @@
-Berksfile.lock
-Gemfile.lock
-berks-cookbooks/
-notes.md
-nodes/
+.DS_Store
 .kitchen/
 .kitchen.local.yml
 .bundle
 .vagrant
+berks-cookbooks/
+Berksfile.lock
+clients/
+cookbooks/
+Gemfile.lock
+nodes/

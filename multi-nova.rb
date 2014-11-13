@@ -27,8 +27,9 @@ machine 'controller' do
   role 'os-network-metadata-agent'
   role 'os-network-server'
   role 'os-compute-worker'
+  recipe 'openstack-common::openrc'
   chef_environment 'vagrant-multi-nova'
-  file '/etc/chef/openstack_data_bag_secret','/Users/jasghar/repo/singlestack/.chef/encrypted_data_bag_secret'
+  file '/etc/chef/openstack_data_bag_secret','/Users/jasghar/repo/shortstack/.chef/encrypted_data_bag_secret'
   converge true
 end
 
@@ -49,7 +50,7 @@ machine 'compute1' do
   machine_options :vagrant_config => compute1_config
   role 'os-compute-worker'
   chef_environment 'vagrant-multi-nova'
-  file '/etc/chef/openstack_data_bag_secret','/Users/jasghar/repo/singlestack/.chef/encrypted_data_bag_secret'
+  file '/etc/chef/openstack_data_bag_secret','/Users/jasghar/repo/shortstack/.chef/encrypted_data_bag_secret'
   converge true
 end
 
@@ -70,6 +71,6 @@ machine 'compute2' do
   machine_options :vagrant_config => compute2_config
   role 'os-compute-worker'
   chef_environment 'vagrant-multi-nova'
-  file '/etc/chef/openstack_data_bag_secret','/Users/jasghar/repo/singlestack/.chef/encrypted_data_bag_secret'
+  file '/etc/chef/openstack_data_bag_secret','/Users/jasghar/repo/shortstack/.chef/encrypted_data_bag_secret'
   converge true
 end

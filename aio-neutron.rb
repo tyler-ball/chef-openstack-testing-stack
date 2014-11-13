@@ -21,7 +21,8 @@ machine 'controller' do
   machine_options :vagrant_config => controller_config
   role 'allinone-compute'
   role 'os-image-upload'
+  recipe 'openstack-common::openrc'
   chef_environment 'vagrant-aio-neutron'
-  file '/etc/chef/openstack_data_bag_secret','/Users/jasghar/repo/singlestack/.chef/encrypted_data_bag_secret'
+  file '/etc/chef/openstack_data_bag_secret','/Users/jasghar/repo/shortstack/.chef/encrypted_data_bag_secret'
   converge true
 end
