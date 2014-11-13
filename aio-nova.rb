@@ -1,7 +1,7 @@
 require 'chef_metal'
 
-mario_config = <<-ENDCONFIG
-  config.vm.box = "trusty64"
+controller_config = <<-ENDCONFIG
+  config.vm.box = "centos65"
   config.vm.network "forwarded_port", guest: 443, host: 9443
   config.vm.network "forwarded_port", guest: 4002, host: 4002
   config.vm.network "forwarded_port", guest: 5000, host: 5000
@@ -14,11 +14,11 @@ mario_config = <<-ENDCONFIG
     v.customize ["modifyvm", :id, "--nicpromisc2", "allow-all"]
     v.customize ["modifyvm", :id,  "--natdnshostresolver1", "on"]
   end
-  config.vm.network "private_network", ip: "192.168.200.60"
+  config.vm.network "private_network", ip: "192.168.100.60"
 ENDCONFIG
 
-machine 'mario' do
-  machine_options :vagrant_config => mario_config
+machine 'controller' do
+  machine_options :vagrant_config => controller_config
   role 'allinone-compute'
   role 'os-image-upload'
   chef_environment 'vagrant-aio-nova'

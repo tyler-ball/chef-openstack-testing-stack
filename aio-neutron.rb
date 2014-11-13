@@ -1,6 +1,6 @@
 require 'chef_metal'
 
-mario_config = <<-ENDCONFIG
+controller_config = <<-ENDCONFIG
   config.vm.box = "centos65"
   config.vm.network "forwarded_port", guest: 443, host: 9443
   config.vm.network "forwarded_port", guest: 4002, host: 4002
@@ -17,8 +17,8 @@ mario_config = <<-ENDCONFIG
   config.vm.network "private_network", ip: "192.168.100.60"
 ENDCONFIG
 
-machine 'mario' do
-  machine_options :vagrant_config => mario_config
+machine 'controller' do
+  machine_options :vagrant_config => controller_config
   role 'allinone-compute'
   role 'os-image-upload'
   chef_environment 'vagrant-aio-neutron'

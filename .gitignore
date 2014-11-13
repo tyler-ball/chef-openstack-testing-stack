@@ -3,3 +3,5 @@ Gemfile.lock
 cookbooks/
 notes.md
 nodes/
+.kitchen/
+.kitchen.local.yml
