@@ -1,7 +1,9 @@
 Berksfile.lock
 Gemfile.lock
-cookbooks/
+berks-cookbooks/
 notes.md
 nodes/
 .kitchen/
 .kitchen.local.yml
+.bundle
+.vagrant
