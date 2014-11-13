@@ -51,18 +51,8 @@ $ sudo su -
 
 How to test the machine is set up correctly, after you source the above: (as root)
 
-TODO: create automated serverspec or something around this
-
 ```bash
 # nova service-list && nova hypervisor-list && nova image-list
-```
-
-NOTE: It seems that the metadata service gets "stuck" and the vm's can't find it the first time. I suggest restarting the service
-before spinning up your first vm.
-
-```bash
-# /etc/init.d/openstack-nova-api stop
-# /etc/init.d/openstack-nova-api start
 ```
 
 Boot that image! (as root)
