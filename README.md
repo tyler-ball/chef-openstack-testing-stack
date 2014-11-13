@@ -71,18 +71,6 @@ Boot that image! (as root)
 # nova boot test --image cirros --flavor 1 --poll
 ```
 
-Check for the connection to the metadata api with the following commmand:
-```bash
-# nova console-log test
-```
-And look for something like the following:
-```
-cirros-ds 'net' up at 5.36
-checking http://169.254.169.254/2009-04-04/instance-id
-successful after 1/20 tries: up 5.68. iid=i-00000003
-```
-If you don't see something like that `ps waux | grep nova-api` and kill them and start `/etc/init.d/openstack-nova-api start`.
-
 If you would like to use the dashboard you should go to https://localhost:9443 and the username password is `admin/mypass`.
 
 If you want to destroy everything, run this from the `shortstack/` repo.
