@@ -26,7 +26,6 @@ machine 'controller' do
   role 'os-network-dhcp-agent'
   role 'os-network-metadata-agent'
   role 'os-network-server'
-  role 'os-compute-worker'
   recipe 'openstack-common::openrc'
   chef_environment 'vagrant-multi-nova'
   file '/etc/chef/openstack_data_bag_secret','/Users/jasghar/repo/shortstack/.chef/encrypted_data_bag_secret'
@@ -69,6 +68,28 @@ ENDCONFIG
 
 machine 'compute2' do
   machine_options :vagrant_config => compute2_config
+  role 'os-compute-worker'
+  chef_environment 'vagrant-multi-nova'
+  file '/etc/chef/openstack_data_bag_secret','/Users/jasghar/repo/shortstack/.chef/encrypted_data_bag_secret'
+  converge true
+end
+
+
+compute3_config = <<-ENDCONFIG
+  config.vm.box = "centos65"
+  config.vm.provider "virtualbox" do |v|
+    v.memory = 2048
+    v.cpus = 2
+    v.customize ["modifyvm", :id, "--nicpromisc2", "allow-all"]
+    v.customize ["modifyvm", :id, "--nicpromisc3", "allow-all"]
+    v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
+  end
+  config.vm.network "public_network", ip: "192.168.100.63", bridge: 'en0: Wi-Fi (AirPort)'
+  config.vm.network "private_network", ip: "192.168.200.63"
+ENDCONFIG
+
+machine 'compute3' do
+  machine_options :vagrant_config => compute3_config
   role 'os-compute-worker'
   chef_environment 'vagrant-multi-nova'
   file '/etc/chef/openstack_data_bag_secret','/Users/jasghar/repo/shortstack/.chef/encrypted_data_bag_secret'

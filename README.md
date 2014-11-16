@@ -38,7 +38,7 @@ OR if you want a multi-node nova cluster:
 $ bundle exec chef-client -z vagrant_linux.rb multi-nova.rb
 ```
 
-If you spin up the `multi-nova` build, you'll have three machines `controller`,`compute1`,and `compute2`. They all live on the
+If you spin up the `multi-nova` build, you'll have three machines `controller`,`compute1`,`compute2`, and `compute3`. They all live on the
 `192.168.100.x` network so keep that in mind. If you'd like to take this and change it around, whatever you decide your controller
 node to be change anything that has the `192.168.100.60` address to that.
 
@@ -58,7 +58,7 @@ How to test the machine is set up correctly, after you source the above: (as roo
 Boot that image! (as root)
 
 ```bash
-# nova boot test --image cirros --flavor 1 --poll
+# nova boot test --image cirros --flavor 1
 ```
 
 If you would like to use the dashboard you should go to https://localhost:9443 and the username password is `admin/mypass`.
