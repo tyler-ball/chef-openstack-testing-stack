@@ -1,4 +1,4 @@
-require 'chef_metal'
+require 'chef/provisioning'
 
 controller_config = <<-ENDCONFIG
   config.vm.box = "centos65"
@@ -23,6 +23,6 @@ machine 'controller' do
   role 'os-image-upload'
   recipe 'openstack-common::openrc'
   chef_environment 'vagrant-aio-neutron'
-  file '/etc/chef/openstack_data_bag_secret','/Users/jasghar/repo/shortstack/.chef/encrypted_data_bag_secret'
+  file '/etc/chef/openstack_data_bag_secret','#{File.dirname(__FILE__)}/.chef/encrypted_data_bag_secret'
   converge true
 end

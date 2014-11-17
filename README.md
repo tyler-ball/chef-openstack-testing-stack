@@ -18,9 +18,6 @@ $ export CHEF_DRIVER=vagrant
 You need four databags : *user_passwords*, *db_passwords*, *service_passwords*, *secrets*. I have a already created
 the `data_bags/` directory, so you shouldn't need to make them, if you do something's broken.
 
-After the data_bags are created you'll want to open up the `aio-nova.rb`, `aio-neutron.rb`, or `multi-nova.rb` to have it point to your
-`encrypted_data_bag_secret` like how I did here: `/Users/jasghar/repo/shortstack/.chef/encrypted_data_bag_secret`.
-
 You may also need to change the networking options around the `aio-nova.rb`, `aio-neutron.rb`, or `multi-nova.rb` files. I wrote this on
 my MacBook Pro with an `en0` you're mileage may vary.
 
