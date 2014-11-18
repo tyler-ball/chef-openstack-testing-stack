@@ -92,6 +92,6 @@ machine 'compute3' do
   machine_options :vagrant_config => compute3_config
   role 'os-compute-worker'
   chef_environment 'vagrant-multi-nova'
-  file '/etc/chef/openstack_data_bag_secret','#{File.dirname(__FILE__)}/.chef/encrypted_data_bag_secret'
+  file '/etc/chef/openstack_data_bag_secret',"#{File.dirname(__FILE__)}/.chef/encrypted_data_bag_secret"
   converge true
 end
