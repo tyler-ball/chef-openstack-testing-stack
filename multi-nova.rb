@@ -20,6 +20,7 @@ controller_config = <<-ENDCONFIG
 ENDCONFIG
 
 machine 'controller' do
+  driver "vagrant:#{File.dirname(__FILE__)}/vms"
   machine_options :vagrant_config => controller_config
   role 'os-compute-single-controller'
   recipe 'openstack-network::identity_registration'
@@ -32,66 +33,26 @@ machine 'controller' do
   converge true
 end
 
-compute1_config = <<-ENDCONFIG
-  config.vm.box = "centos65"
-  config.vm.provider "virtualbox" do |v|
-    v.memory = 2048
-    v.cpus = 2
-    v.customize ["modifyvm", :id, "--nicpromisc2", "allow-all"]
-    v.customize ["modifyvm", :id, "--nicpromisc3", "allow-all"]
-    v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
-  end
-  config.vm.network "public_network", ip: "192.168.100.61", bridge: 'en0: Wi-Fi (AirPort)'
-  config.vm.network "private_network", ip: "192.168.200.61"
-ENDCONFIG
-
-machine 'compute1' do
-  machine_options :vagrant_config => compute1_config
-  role 'os-compute-worker'
-  chef_environment 'vagrant-multi-nova'
-  file '/etc/chef/openstack_data_bag_secret',"#{File.dirname(__FILE__)}/.chef/encrypted_data_bag_secret"
-  converge true
+machine_batch do
+  [ ['compute1', 61], ['compute2', 62], ['compute3', 63] ].each do |name, ip_suff|
+    machine name do
+      driver "vagrant:#{File.dirname(__FILE__)}/vms"
+      machine_options :vagrant_config => <<-ENDCONFIG
+config.vm.box = "centos65"
+config.vm.provider "virtualbox" do |v|
+  v.memory = 2048
+  v.cpus = 2
+  v.customize ["modifyvm", :id, "--nicpromisc2", "allow-all"]
+  v.customize ["modifyvm", :id, "--nicpromisc3", "allow-all"]
+  v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
 end
-
-compute2_config = <<-ENDCONFIG
-  config.vm.box = "centos65"
-  config.vm.provider "virtualbox" do |v|
-    v.memory = 2048
-    v.cpus = 2
-    v.customize ["modifyvm", :id, "--nicpromisc2", "allow-all"]
-    v.customize ["modifyvm", :id, "--nicpromisc3", "allow-all"]
-    v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
-  end
-  config.vm.network "public_network", ip: "192.168.100.62", bridge: 'en0: Wi-Fi (AirPort)'
-  config.vm.network "private_network", ip: "192.168.200.62"
+config.vm.network "public_network", ip: "192.168.100.#{ip_suff}", bridge: 'en0: Wi-Fi (AirPort)'
+config.vm.network "private_network", ip: "192.168.200.#{ip_suff}"
 ENDCONFIG
-
-machine 'compute2' do
-  machine_options :vagrant_config => compute2_config
-  role 'os-compute-worker'
-  chef_environment 'vagrant-multi-nova'
-  file '/etc/chef/openstack_data_bag_secret',"#{File.dirname(__FILE__)}/.chef/encrypted_data_bag_secret"
-  converge true
-end
-
-
-compute3_config = <<-ENDCONFIG
-  config.vm.box = "centos65"
-  config.vm.provider "virtualbox" do |v|
-    v.memory = 2048
-    v.cpus = 2
-    v.customize ["modifyvm", :id, "--nicpromisc2", "allow-all"]
-    v.customize ["modifyvm", :id, "--nicpromisc3", "allow-all"]
-    v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
+      role 'os-compute-worker'
+      chef_environment 'vagrant-multi-nova'
+      file '/etc/chef/openstack_data_bag_secret',"#{File.dirname(__FILE__)}/.chef/encrypted_data_bag_secret"
+      converge true
+    end
   end
-  config.vm.network "public_network", ip: "192.168.100.63", bridge: 'en0: Wi-Fi (AirPort)'
-  config.vm.network "private_network", ip: "192.168.200.63"
-ENDCONFIG
-
-machine 'compute3' do
-  machine_options :vagrant_config => compute3_config
-  role 'os-compute-worker'
-  chef_environment 'vagrant-multi-nova'
-  file '/etc/chef/openstack_data_bag_secret',"#{File.dirname(__FILE__)}/.chef/encrypted_data_bag_secret"
-  converge true
 end
