@@ -28,7 +28,7 @@ machine 'controller' do
   role 'os-network-metadata-agent'
   role 'os-network-server'
   chef_environment 'vagrant-multi-neutron'
-  file '/etc/chef/openstack_data_bag_secret','#{File.dirname(__FILE__)}/.chef/encrypted_data_bag_secret'
+  file '/etc/chef/openstack_data_bag_secret',"#{File.dirname(__FILE__)}/.chef/encrypted_data_bag_secret"
   converge true
 end
 
@@ -49,7 +49,7 @@ machine 'compute1' do
   machine_options :vagrant_config => compute1_config
   role 'os-compute-worker'
   chef_environment 'vagrant-multi-neutron'
-  file '/etc/chef/openstack_data_bag_secret','#{File.dirname(__FILE__)}/.chef/encrypted_data_bag_secret'
+  file '/etc/chef/openstack_data_bag_secret',"#{File.dirname(__FILE__)}/.chef/encrypted_data_bag_secret"
   converge true
 end
 
@@ -70,6 +70,6 @@ machine 'compute2' do
   machine_options :vagrant_config => compute2_config
   role 'os-compute-worker'
   chef_environment 'vagrant-multi-neutron'
-  file '/etc/chef/openstack_data_bag_secret','#{File.dirname(__FILE__)}/.chef/encrypted_data_bag_secret'
+  file '/etc/chef/openstack_data_bag_secret',"#{File.dirname(__FILE__)}/.chef/encrypted_data_bag_secret"
   converge true
 end
