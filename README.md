@@ -5,8 +5,6 @@ in one node.
 
 ```shell
 $ vagrant add centos65 http://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_centos-6.5_chef-provisionerless.box
-$ mkdir ~/code
-$ cd ~/code
 $ git clone https://github.com/jjasghar/chef-openstack-testing-stack.git shortstack
 $ cd shortstack
 $ bundle install
@@ -14,6 +12,7 @@ $ bundle exec berks vendor cookbooks
 $ ruby -e "require 'openssl'; puts OpenSSL::PKey::RSA.new(2048).to_pem" > .chef/validator.pem
 $ export CHEF_DRIVER=vagrant
 ```
+This has also been tested with ChefDK 0.3.5. Simply omit the `bundle install` command and any `bundle exec` prefixes.
 
 You need four databags : *user_passwords*, *db_passwords*, *service_passwords*, *secrets*. I have a already created
 the `data_bags/` directory, so you shouldn't need to make them, if you do something's broken.
@@ -35,7 +34,7 @@ OR if you want a multi-node nova cluster:
 $ bundle exec chef-client -z vagrant_linux.rb multi-nova.rb
 ```
 
-If you spin up the `multi-nova` build, you'll have three machines `controller`,`compute1`,`compute2`, and `compute3`. They all live on the
+If you spin up the `multi-nova` build, you'll have four machines `controller`,`compute1`,`compute2`, and `compute3`. They all live on the
 `192.168.100.x` network so keep that in mind. If you'd like to take this and change it around, whatever you decide your controller
 node to be change anything that has the `192.168.100.60` address to that.
 

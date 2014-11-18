@@ -9,3 +9,6 @@ clients/
 cookbooks/
 Gemfile.lock
 nodes/
+vms/
+.chef/nodienode.pem
+.chef/validator.pem
