@@ -39,7 +39,7 @@ If you spin up the `multi-nova` build, you'll have four machines `controller`,`c
 node to be change anything that has the `192.168.100.60` address to that.
 
 ```bash
-$ cd ~/.chef/vms
+$ cd vms
 $ vagrant ssh controller
 $ sudo su -
 # source openrc
