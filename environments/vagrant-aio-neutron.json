@@ -7,39 +7,69 @@
   "chef_type": "environment",
   "default_attributes": {
   },
-  "override_attributes": {
-    "openstack": {
-      "endpoints": {
-        "identity-bind": {
-          "host": "0.0.0.0"
-        }
-      },
-      "network": {
-        "openvswitch": {
-          "local_ip_interface": "eth1"
-        }
-      },
-      "image": {
-        "image_upload": true,
-        "upload_images": [
-          "cirros"
-        ],
-        "upload_image": {
-          "cirros": "https://launchpad.net/cirros/trunk/0.3.0/+download/cirros-0.3.0-x86_64-disk.img"
-        }
-      },
-      "compute": {
-        "network": {
-          "public_interface": "eth1",
-          "service_type": "neutron"
+    "override_attributes": {
+        "mysql": {
+            "allow_remote_root": true,
+            "root_network_acl": ["%"]
         },
-        "config": {
-          "ram_allocation_ratio": 5.0
-        },
-        "libvirt": {
-          "virt_type": "qemu"
+        "openstack": {
+            "endpoints": {
+                "identity-bind": {
+                    "host": "0.0.0.0",
+                },
+                "bind-host": "0.0.0.0"
+                "network": {
+                    "debug": "True",
+                    "dhcp": {
+                        "enable_isolated_metadata": "True"
+                    },
+                    "metadata": {
+                        "nova_metadata_ip": "192.168.1.60"
+                    },
+                    "openvswitch": {
+                        "tunnel_id_ranges": "1:1000",
+                        "enable_tunneling": "True",
+                        "tenant_network_type": "gre",
+                        "local_ip_interface": "eth1"
+                    },
+                    "api": {
+                        "bind_interface": "eth1"
+                    }
+                }
+            },
+            "image": {
+                "image_upload": true,
+                "upload_images": [
+                    "cirros"
+                ],
+                "upload_image": {
+                    "cirros": "https://launchpad.net/cirros/trunk/0.3.0/+download/cirros-0.3.0-x86_64-disk.img"
+                }
+            },
+            "compute": {
+                "network": {
+                    "public_interface": "eth0",
+                    "service_tnype": "neutron"
+                },
+                "config": {
+                    "ram_allocation_ratio": 5.0
+                },
+                "libvirt": {
+                    "virt_type": "qemu"
+                },
+                "networks": [
+                    {
+                        "label": "public",
+                        "ipv4_cidr": "192.168.10.0/24",
+                        "num_networks": "1",
+                        "network_size": "255",
+                        "bridge": "br100",
+                        "bridge_dev": "eth1",
+                        "dns1": "8.8.8.8",
+                        "dns2": "8.8.4.4"
+                    }
+                ]
+            }
         }
-      }
     }
-  }
 }
