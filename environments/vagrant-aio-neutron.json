@@ -48,7 +48,7 @@
             "compute": {
                 "network": {
                     "public_interface": "eth0",
-                    "service_tnype": "neutron"
+                    "service_type": "neutron"
                 },
                 "config": {
                     "ram_allocation_ratio": 5.0
