@@ -1,7 +1,6 @@
 require 'chef/provisioning'
 
 controller_config = <<-ENDCONFIG
-  config.vm.box = "centos65"
   config.vm.network "forwarded_port", guest: 443, host: 9443 # dashboard-ssl
   config.vm.network "forwarded_port", guest: 4002, host: 4002
   config.vm.network "forwarded_port", guest: 5000, host: 5000
@@ -20,8 +19,7 @@ controller_config = <<-ENDCONFIG
 ENDCONFIG
 
 machine 'controller' do
-  driver "vagrant:#{File.dirname(__FILE__)}/vms"
-  machine_options :vagrant_config => controller_config
+  add_machine_options :vagrant_config => controller_config
   role 'os-compute-single-controller'
   recipe 'openstack-network::identity_registration'
   role 'os-network-dhcp-agent'
@@ -36,9 +34,7 @@ end
 machine_batch do
   [ ['compute1', 61], ['compute2', 62], ['compute3', 63] ].each do |name, ip_suff|
     machine name do
-      driver "vagrant:#{File.dirname(__FILE__)}/vms"
-      machine_options :vagrant_config => <<-ENDCONFIG
-config.vm.box = "centos65"
+      add_machine_options :vagrant_config => <<-ENDCONFIG
 config.vm.provider "virtualbox" do |v|
   v.memory = 2048
   v.cpus = 2

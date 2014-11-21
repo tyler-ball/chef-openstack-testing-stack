@@ -1,7 +1,6 @@
 require 'chef/provisioning'
 
 controller_config = <<-ENDCONFIG
-  config.vm.box = "centos65"
   config.vm.network "forwarded_port", guest: 443, host: 9443
   config.vm.network "forwarded_port", guest: 4002, host: 4002
   config.vm.network "forwarded_port", guest: 5000, host: 5000
@@ -12,13 +11,13 @@ controller_config = <<-ENDCONFIG
     v.memory = 4096
     v.cpus = 2
     v.customize ["modifyvm", :id, "--nicpromisc2", "allow-all"]
-    v.customize ["modifyvm", :id,  "--natdnshostresolver1", "on"]
+    v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
   end
   config.vm.network "private_network", ip: "192.168.100.60"
 ENDCONFIG
 
 machine 'controller' do
-  machine_options :vagrant_config => controller_config
+  add_machine_options :vagrant_config => controller_config
   role 'allinone-compute'
   role 'os-image-upload'
   recipe 'openstack-common::openrc'

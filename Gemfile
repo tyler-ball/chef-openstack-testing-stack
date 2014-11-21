@@ -5,6 +5,6 @@ gem 'json', '<= 1.7.7' # chef dependency
 gem 'knife-block', '~> 0.0.6'
 gem 'berkshelf', '~> 3.1.5'
 gem 'hashie', '~> 2.0'
-gem 'chef-metal'
-gem 'chef-metal-vagrant'
+gem 'chef-provisioning'
+gem 'chef-provisioning-vagrant'
 gem 'semverse', '1.1.0'
