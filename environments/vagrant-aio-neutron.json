@@ -20,6 +20,7 @@
                 "bind-host": "0.0.0.0"
             },
             "network": {
+                "service_plugins": [ "neutron.services.l3_router.l3_router_plugin.L3RouterPlugin" ],
                 "dhcp": {
                     "enable_isolated_metadata": "True"
                 },
@@ -34,6 +35,15 @@
                 },
                 "api": {
                     "bind_interface": "eth1"
+                },
+                "quota": {
+                    "floatingip": "50"
+                }
+            },
+            "block-storage": {
+                "volume": {
+                    "create_volume_group": true,
+                    "default_volume_type": "lvm"
                 }
             },
             "image": {
@@ -58,8 +68,8 @@
                 },
                 "networks": [
                     {
-                        "label": "public",
-                        "ipv4_cidr": "192.168.10.0/24",
+                        "label": "private",
+                        "ipv4_cidr": "192.168.200.0/24",
                         "num_networks": "1",
                         "network_size": "255",
                         "bridge": "br100",
