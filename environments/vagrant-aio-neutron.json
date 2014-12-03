@@ -30,8 +30,8 @@
                 "openvswitch": {
                     "tunnel_id_ranges": "1:1000",
                     "enable_tunneling": "True",
-                    "tenant_network_type": "gre",
-                    "local_ip_interface": "eth1"
+                    "tunnel_type": "gre",
+                    "tenant_network_type": "gre"
                 },
                 "api": {
                     "bind_interface": "eth1"
@@ -57,7 +57,6 @@
             },
             "compute": {
                 "network": {
-                    "public_interface": "eth0",
                     "service_type": "neutron"
                 },
                 "config": {
@@ -65,19 +64,7 @@
                 },
                 "libvirt": {
                     "virt_type": "qemu"
-                },
-                "networks": [
-                    {
-                        "label": "private",
-                        "ipv4_cidr": "192.168.200.0/24",
-                        "num_networks": "1",
-                        "network_size": "255",
-                        "bridge": "br100",
-                        "bridge_dev": "eth1",
-                        "dns1": "8.8.8.8",
-                        "dns2": "8.8.4.4"
-                    }
-                ]
+                }
             }
         }
     }
