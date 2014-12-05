@@ -24,9 +24,6 @@
                 "dhcp": {
                     "enable_isolated_metadata": "True"
                 },
-                "metadata": {
-                    "nova_metadata_ip": "192.168.1.60"
-                },
                 "openvswitch": {
                     "tunnel_id_ranges": "1:1000",
                     "enable_tunneling": "True",
@@ -38,6 +35,9 @@
                 },
                 "quota": {
                     "floatingip": "50"
+                },
+                "l3":{
+                    "external_network_bridge_interface": "eth1"
                 }
             },
             "block-storage": {
