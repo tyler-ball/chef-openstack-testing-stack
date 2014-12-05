@@ -13,7 +13,7 @@ controller_config = <<-ENDCONFIG
     v.customize ["modifyvm", :id, "--nicpromisc2", "allow-all"]
     v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
   end
-  config.vm.network "private_network", ip: "192.168.100.60", bridge: 'en0: Wi-Fi (AirPort)'
+  config.vm.network "private_network", ip: "172.16.0.254"
 ENDCONFIG
 
 machine 'controller' do
