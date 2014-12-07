@@ -15,7 +15,7 @@ controller_config = <<-ENDCONFIG
     v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
   end
   config.vm.network "private_network", ip: "192.168.100.60"
-  config.vm.network "private_network", ip: "172.16.10.60"
+  config.vm.network "private_network", ip: "192.168.200.60"
 ENDCONFIG
 
 machine 'controller' do
@@ -26,6 +26,7 @@ machine 'controller' do
   role 'os-network-dhcp-agent'
   role 'os-network-metadata-agent'
   role 'os-network-server'
+  recipe 'openstack-common::openrc'
   chef_environment 'vagrant-multi-neutron'
   file '/etc/chef/openstack_data_bag_secret',"#{File.dirname(__FILE__)}/.chef/encrypted_data_bag_secret"
   converge true
@@ -43,12 +44,12 @@ config.vm.provider "virtualbox" do |v|
   v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
 end
 config.vm.network "private_network", ip: "192.168.100.#{ip_suff}"
-config.vm.network "private_network", ip: "172.16.10.#{ip_suff}"
+config.vm.network "private_network", ip: "192.168.200.#{ip_suff}"
 ENDCONFIG
-    role 'os-compute-worker'
-    chef_environment 'vagrant-multi-neutron'
-    file '/etc/chef/openstack_data_bag_secret',"#{File.dirname(__FILE__)}/.chef/encrypted_data_bag_secret"
-    converge true
+      role 'os-compute-worker'
+      chef_environment 'vagrant-multi-neutron'
+      file '/etc/chef/openstack_data_bag_secret',"#{File.dirname(__FILE__)}/.chef/encrypted_data_bag_secret"
+      converge true
     end
   end
 end
