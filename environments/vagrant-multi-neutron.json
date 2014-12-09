@@ -30,6 +30,14 @@
             },
             "image-api":{
                 "host": "192.168.100.60"
+            },
+            "compute-vnc-bind":{
+                "host": "0.0.0.0",
+                "bind_interface": "eth1"
+            },
+            "compute-vnc":{
+                "host": "0.0.0.0",
+                "bind_interface": "eth1"
             }
         },
         "network": {
@@ -75,11 +83,9 @@
             }
         },
         "compute": {
-            "xvpvnc_proxy": {
-                "bind_interface": "eth1"
-            },
             "novnc_proxy": {
-                "bind_interface": "eth1"
+                "bind_interface": "eth1",
+                "bind_address": "0.0.0.0"
             },
             "libvirt": {
                 "virt_type": "qemu"
