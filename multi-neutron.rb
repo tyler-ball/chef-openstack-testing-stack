@@ -33,7 +33,8 @@ machine 'controller' do
 end
 
 machine_batch do
-  [ ['compute1', 61], ['compute2', 62], ['compute3', 63] ].each do |name, ip_suff|
+#  [ ['compute1', 61], ['compute2', 62], ['compute3', 63] ].each do |name, ip_suff|
+  [ ['compute1', 61] ].each do |name, ip_suff|
     machine name do
       add_machine_options :vagrant_config => <<-ENDCONFIG
 config.vm.provider "virtualbox" do |v|

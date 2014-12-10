@@ -48,6 +48,14 @@
                 },
                 "db": {
                     "host": "192.168.100.60"
+                },
+                "compute-vnc-bind":{
+                    "host": "0.0.0.0",
+                    "bind_interface": "eth1"
+                },
+                "compute-vnc":{
+                    "host": "0.0.0.0",
+                    "bind_interface": "eth1"
                 }
             },
             "image": {
