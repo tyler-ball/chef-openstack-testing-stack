@@ -63,8 +63,12 @@
               "quota": {
                   "floatingip": "50"
               },
-              "l3":{
+              "l3": {
                   "external_network_bridge_interface": "eth1"
+              },
+              "ml2": {
+                  "type_drivers": "gre",
+                  "tenant_network_types": "gre"
               }
           },
           "block-storage": {
