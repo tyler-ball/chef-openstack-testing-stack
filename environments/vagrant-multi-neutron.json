@@ -12,12 +12,6 @@
           "allow_remote_root": true,
           "root_network_acl": ["%"]
       },
-      "yum":{
-          "main":
-          {
-              "proxy": "http://172.16.100.54:3128"
-          }
-      },
       "openstack": {
           "identity": {
               "bind_interface": "eth1"
