@@ -8,7 +8,7 @@ controller_config = <<-ENDCONFIG
   config.vm.network "forwarded_port", guest: 8774, host: 8774
   config.vm.network "forwarded_port", guest: 35357, host: 35357
   config.vm.provider "virtualbox" do |v|
-    v.memory = 4096
+    v.memory = 8096
     v.cpus = 2
     v.customize ["modifyvm", :id, "--nicpromisc2", "allow-all"]
     v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
