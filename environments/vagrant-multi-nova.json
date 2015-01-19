@@ -17,31 +17,7 @@
                 "bind_interface": "eth1"
             },
             "endpoints": {
-                "identity-bind": {
-                    "host": "0.0.0.0"
-                },
-                "identity-api": {
-                    "host": "0.0.0.0"
-                },
-                "identity-admin": {
-                    "host": "0.0.0.0"
-                },
-                "identity-admin-bind": {
-                    "host": "0.0.0.0"
-                },
-                "image-api-bind": {
-                    "host": "0.0.0.0"
-                },
-                "compute-api-bind": {
-                    "host": "0.0.0.0"
-                },
-                "compute-ec2-api-bind": {
-                    "host": "0.0.0.0"
-                },
-                "network-api-bind": {
-                    "host": "0.0.0.0"
-                },
-                "bind-host": "0.0.0.0",
+                "bind-host": "192.168.100.60",
                 "host": "192.168.100.60",
                 "mq": {
                     "host": "192.168.100.60"
@@ -60,22 +36,21 @@
                 "image_upload": true,
                 "upload_images": [
                     "cirros",
-                    "ubuntu-precise",
                     "ubuntu-trusty",
-                    "centos-7",
-                    "centos-65"
+                    "centos-7"
                 ],
                 "upload_image": {
                     "cirros": "http://download.cirros-cloud.net/0.3.2/cirros-0.3.2-x86_64-disk.img",
-                    "ubuntu-precise": "https://cloud-images.ubuntu.com/precise/current/precise-server-cloudimg-amd64-disk1.img",
                     "ubuntu-trusty": "https://cloud-images.ubuntu.com/trusty/current/trusty-server-cloudimg-amd64-disk1.img",
-                    "centos-7": "http://cloud.centos.org/centos/7/devel/CentOS-7-x86_64-GenericCloud.qcow2",
-                    "centos-65": "http://cloud.centos.org/centos/6.5/images/CentOS-6-x86_64-GenericCloud-20140929_01.qcow2"
+                    "centos-7": "http://cloud.centos.org/centos/7/devel/CentOS-7-x86_64-GenericCloud.qcow2"
                 }
             },
             "compute": {
                 "libvirt": {
                     "virt_type": "qemu"
+                },
+                "vnc_bind":{
+                    "host": "0.0.0.0"
                 },
                 "network": {
                     "public_interface": "eth0",
