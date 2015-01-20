@@ -49,7 +49,7 @@
                 "libvirt": {
                     "virt_type": "qemu"
                 },
-                "vnc_bind":{
+                "compute-vnc-bind":{
                     "host": "0.0.0.0"
                 },
                 "network": {
