@@ -20,23 +20,34 @@ service restarting issues.
 
 ```shell
 $ vagrant box add centos65 http://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_centos-6.5_chef-provisionerless.box
+$ vagrant box add ubuntu14 http://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_ubuntu-14.04_chef-provisionerless.box
 $ git clone https://github.com/jjasghar/chef-openstack-testing-stack.git testing-stack
 $ cd testing-stack
+$ vi vagrant_linux.rb # change the 'vm.box' to the box you'd like to run.
 $ bundle install
 $ bundle exec berks vendor cookbooks
 $ ruby -e "require 'openssl'; puts OpenSSL::PKey::RSA.new(2048).to_pem" > .chef/validator.pem
 $ export CHEF_DRIVER=vagrant
 ```
 This has also been tested with ChefDK 0.3.5. Simply omit the `bundle install` command and any `bundle exec` prefixes.
+You can convert the `bundle exec` to `chef exec`. If you need ChefDK you can install it via: `curl -L https://chef.sh | sudo bash`.
 
 You need four databags : *user_passwords*, *db_passwords*, *service_passwords*, *secrets*. I have a already created
 the `data_bags/` directory, so you shouldn't need to make them, if you do something's broken.
 
-You may also need to change the networking options around the `aio-nova.rb`, `aio-neutron.rb`, `multi-nova.rb` or `multi-neutron.rb` files. I wrote this on
-my MacBook Pro with an `en0` you're mileage may vary.
+You may also need to change the networking options around the `aio-nova.rb`, `aio-neutron.rb`, `multi-nova.rb` or `multi-neutron.rb`
+files. I wrote this on my MacBook Pro with an `en0` you're mileage may vary.
+
+We have written some `rake` tasks to leverage ChefDK to help out with this also:
+```bash
+rake aio_neutron    # All-in-One Neutron build
+rake aio_nova       # All-in-One Nova-networking build
+rake clean          # blow everything away
+rake multi_neutron  # Multi-Neutron build
+rake multi_nova     # Multi-Nova-networking build
+```
 
 Now you should be good to start up `chef-client`!
-
 ```bash
 $ bundle exec chef-client -z vagrant_linux.rb aio-nova.rb
 ```
