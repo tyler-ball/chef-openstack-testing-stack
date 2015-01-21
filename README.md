@@ -37,7 +37,7 @@ the `data_bags/` directory, so you shouldn't need to make them, if you do someth
 You may also need to change the networking options around the `aio-nova.rb`, `aio-neutron.rb`, `multi-nova.rb` or `multi-neutron.rb`
 files. I wrote this on my MacBook Pro with an `en0` you're mileage may vary.
 
-**NOTE**: If you are running Ubuntu 14.04 LTS and as your base image, you should note that the shipped kernel `3.13.0-24-generic` has networking issues, and the best way to resolve this is via: `apt-get install linux-image-generic-lts-utopic`. This will install at least `3.16.0`
+**NOTE**: If you are running Ubuntu 14.04 LTS and as your base compute machine, you should note that the shipped kernel `3.13.0-24-generic` has networking issues, and the best way to resolve this is via: `apt-get install linux-image-generic-lts-utopic`. This will install at least `3.16.0`
 from the Utopic hardware enablement.
 
 We have written some `rake` tasks to leverage ChefDK to help out with this also:
