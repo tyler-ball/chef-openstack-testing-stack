@@ -11,7 +11,7 @@ of the service restarting issues.
 
 ## Prereqs
 
-- at least Vagrant 1.6.3
+- at least Vagrant 1.7.2
 - Virtualbox or something like that that vagrant can use
 - a sane Ruby environment
 
