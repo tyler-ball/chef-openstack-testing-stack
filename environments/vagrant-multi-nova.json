@@ -8,22 +8,37 @@
   "default_attributes": {
   },
     "override_attributes": {
+        "rabbitmq": {
+            "use_distro_version": false
+        },
+        "yum": {
+            "repo": {
+                "baseurl": "https://repos.fedorapeople.org/repos/openstack/openstack-juno/epel-7"
+            },
+            "epel": {
+                "mirrorlist": "http://mirrors.fedoraproject.org/mirrorlist?repo=epel-7&arch=$basearch",
+                "gpgkey": "http://dl.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-7"
+            }
+        },
         "mysql": {
             "allow_remote_root": true,
             "root_network_acl": ["%"]
         },
         "openstack": {
+            "yum": {
+                "uri": "https://repos.fedorapeople.org/repos/openstack/openstack-juno/epel-7"
+            },
             "identity": {
                 "bind_interface": "eth1"
             },
             "endpoints": {
-                "bind-host": "192.168.100.60",
-                "host": "192.168.100.60",
+                "bind-host": "172.16.100.60",
+                "host": "172.16.100.60",
                 "mq": {
-                    "host": "192.168.100.60"
+                    "host": "172.16.100.60"
                 },
                 "db": {
-                    "host": "192.168.100.60"
+                    "host": "172.16.100.60"
                 }
             },
             "image": {
@@ -63,9 +78,9 @@
                 "networks": [
                     {
                         "label": "public",
-                        "ipv4_cidr": "192.168.100.0/24",
+                        "ipv4_cidr": "172.16.100.0/24",
                         "num_networks": "1",
-                        "network_size": "255",
+                        "network_size": "256",
                         "bridge": "br100",
                         "bridge_dev": "eth1",
                         "dns1": "8.8.8.8",

@@ -14,7 +14,7 @@ controller_config = <<-ENDCONFIG
     v.customize ["modifyvm", :id, "--nicpromisc3", "allow-all"]
     v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
   end
-  config.vm.network "public_network", ip: "192.168.100.60", bridge: 'en0: Wi-Fi (AirPort)'
+  config.vm.network "public_network", ip: "172.16.100.60", bridge: 'en0: Wi-Fi (AirPort)'
   config.vm.network "private_network", ip: "192.168.200.60"
 ENDCONFIG
 
@@ -42,7 +42,7 @@ config.vm.provider "virtualbox" do |v|
   v.customize ["modifyvm", :id, "--nicpromisc3", "allow-all"]
   v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
 end
-config.vm.network "public_network", ip: "192.168.100.#{ip_suff}", bridge: 'en0: Wi-Fi (AirPort)'
+config.vm.network "public_network", ip: "172.16.100.#{ip_suff}", bridge: 'en0: Wi-Fi (AirPort)'
 config.vm.network "private_network", ip: "192.168.200.#{ip_suff}"
 ENDCONFIG
       role 'os-compute-worker'
