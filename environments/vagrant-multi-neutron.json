@@ -13,9 +13,6 @@
             "root_network_acl": ["%"]
         },
         "openstack": {
-            "rabbitmq": {
-                "use_distro_version": false
-            },
             "identity": {
                 "bind_interface": "eth1"
             },
