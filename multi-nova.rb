@@ -4,6 +4,7 @@ controller_config = <<-ENDCONFIG
   config.vm.network "forwarded_port", guest: 443, host: 9443 # dashboard-ssl
   config.vm.network "forwarded_port", guest: 4002, host: 4002
   config.vm.network "forwarded_port", guest: 5000, host: 5000
+  config.vm.network "forwarded_port", guest: 6080, host: 6080
   config.vm.network "forwarded_port", guest: 8773, host: 8773 # compute-ec2-api
   config.vm.network "forwarded_port", guest: 8774, host: 8774 # compute-api
   config.vm.network "forwarded_port", guest: 35357, host: 35357
@@ -14,7 +15,7 @@ controller_config = <<-ENDCONFIG
     v.customize ["modifyvm", :id, "--nicpromisc3", "allow-all"]
     v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
   end
-  config.vm.network "public_network", ip: "192.168.100.60", bridge: 'en0: Wi-Fi (AirPort)'
+  config.vm.network "public_network", ip: "172.16.100.60", bridge: 'en0: Wi-Fi (AirPort)'
   config.vm.network "private_network", ip: "192.168.200.60"
 ENDCONFIG
 
@@ -42,7 +43,7 @@ config.vm.provider "virtualbox" do |v|
   v.customize ["modifyvm", :id, "--nicpromisc3", "allow-all"]
   v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
 end
-config.vm.network "public_network", ip: "192.168.100.#{ip_suff}", bridge: 'en0: Wi-Fi (AirPort)'
+config.vm.network "public_network", ip: "172.16.100.#{ip_suff}", bridge: 'en0: Wi-Fi (AirPort)'
 config.vm.network "private_network", ip: "192.168.200.#{ip_suff}"
 ENDCONFIG
       role 'os-compute-worker'

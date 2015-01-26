@@ -10,9 +10,8 @@
     "override_attributes": {
         "openstack": {
             "endpoints": {
-                "identity-bind": {
-                    "host": "0.0.0.0"
-                }
+                "bind-host": "0.0.0.0",
+                "host": "0.0.0.0"
             },
             "image": {
                 "image_upload": true,
