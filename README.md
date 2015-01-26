@@ -21,7 +21,7 @@ Support for CentOS 6.5 and Ubuntu 12 with Icehouse is available with the stable/
 $ git clone https://github.com/jjasghar/chef-openstack-testing-stack.git testing-stack
 $ cd testing-stack
 $ vi vagrant_linux.rb # change the 'vm.box' to the box you'd like to run.
-$ chef exec berks vendor cookbooks
+$ chef exec rake berks_vendor
 $ chef exec ruby -e "require 'openssl'; puts OpenSSL::PKey::RSA.new(2048).to_pem" > .chef/validator.pem
 $ export CHEF_DRIVER=vagrant
 ```
@@ -32,8 +32,7 @@ the `data_bags/` directory, so you shouldn't need to make them, if you do someth
 You may also need to change the networking options around the `aio-nova.rb`, `aio-neutron.rb`, `multi-nova.rb` or `multi-neutron.rb`
 files. I wrote this on my MacBook Pro with an `en0` you're mileage may vary.
 
-**NOTE**: If you are running Ubuntu 14.04 LTS and as your base compute machine, you should note that the shipped kernel `3.13.0-24-generic` has networking issues, and the best way to resolve this is via: `apt-get install linux-image-generic-lts-utopic`. This will install at least `3.16.0`
-from the Utopic hardware enablement.
+**NOTE**: If you are running Ubuntu 14.04 LTS and as your base compute machine, you should note that the shipped kernel `3.13.0-24-generic` has networking issues, and the best way to resolve this is via: `apt-get install linux-image-generic-lts-utopic`. This will install at least `3.16.0` from the Utopic hardware enablement.
 
 ## Rake Deploy Commands
 
@@ -108,4 +107,4 @@ When using this on a Windows platform, here are some tweaks to make this work.
 
 - Support for CentOS 7 with Juno
 - Easier debugging. Maybe a script to pull the logs from the controller.
-- More automated verification testing.  Tie into some amount of [tempest](https://github.com/openstack/tempest) or [refstack](https://wiki.openstack.org/wiki/RefStack)? for basic cluster testing
+- More automated verification testing.  Tie into some amount of [tempest](https://github.com/openstack/tempest) or [refstack](https://wiki.openstack.org/wiki/RefStack)? for basic cluster testing.
