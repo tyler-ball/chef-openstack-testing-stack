@@ -92,10 +92,6 @@ $chef exec rake clean          # blow everything away
 
 ## Known Issues and Workarounds
 
-### RabbitMQ
-
-The rabbitmq cookbook has attribute `version` = 3.4.3 and `use_distro_version` = false.  The stackforge cookbooks override the 'use_distro_version' to true.  Since the version shipped with ubuntu 14 is 3.2.4-1, it fails trying to install reabbitmq-server.  This testing environment have been patched to change the 'use_distro_version' back to false.
-
 ### Windows Platform
 
 When using this on a Windows platform, here are some tweaks to make this work.
