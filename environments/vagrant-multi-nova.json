@@ -36,6 +36,9 @@
                 },
                 "db": {
                     "host": "172.16.100.60"
+                },
+                "compute-vnc-bind":{
+                    "host": "0.0.0.0"
                 }
             },
             "image": {
@@ -60,9 +63,6 @@
             "compute": {
                 "libvirt": {
                     "virt_type": "qemu"
-                },
-                "compute-vnc-bind":{
-                    "host": "0.0.0.0"
                 },
                 "network": {
                     "public_interface": "eth0",
