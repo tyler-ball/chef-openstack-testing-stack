@@ -26,13 +26,16 @@ $ chef exec ruby -e "require 'openssl'; puts OpenSSL::PKey::RSA.new(2048).to_pem
 $ export CHEF_DRIVER=vagrant
 ```
 
-The stackforge OpenStack cookbooks by default use databags for configuring passwords.  There are four databags : *user_passwords*, *db_passwords*, *service_passwords*, *secrets*. I have a already created
+The stackforge OpenStack cookbooks by default use databags for configuring passwords.  There are four
+data_bags : *user_passwords*, *db_passwords*, *service_passwords*, *secrets*. I have a already created
 the `data_bags/` directory, so you shouldn't need to make them, if you do something's broken.
 
 You may also need to change the networking options around the `aio-nova.rb`, `aio-neutron.rb`, `multi-nova.rb` or `multi-neutron.rb`
 files. I wrote this on my MacBook Pro with an `en0` you're mileage may vary.
 
-**NOTE**: If you are running Ubuntu 14.04 LTS and as your base compute machine, you should note that the shipped kernel `3.13.0-24-generic` has networking issues, and the best way to resolve this is via: `apt-get install linux-image-generic-lts-utopic`. This will install at least `3.16.0` from the Utopic hardware enablement.
+**NOTE**: If you are running Ubuntu 14.04 LTS and as your base compute machine, you should note that the shipped
+kernel `3.13.0-24-generic` has networking issues, and the best way to resolve this is
+via: `apt-get install linux-image-generic-lts-utopic`. This will install at least `3.16.0` from the Utopic hardware enablement.
 
 ## Rake Deploy Commands
 
@@ -60,7 +63,7 @@ $ vagrant ssh controller
 $ sudo su -
 ```
 
-### Testing the Contoller
+### Testing the Controller
 
 ```bash
 # Access the controller as noted above
@@ -87,7 +90,7 @@ If you would like to use the OpenStack dashboard you should go to https://localh
 To cleanup all the nodes and start over again with a different environment or different environment attribute overrides, using the following rake command.
 
 ```bash
-$chef exec rake clean          # blow everything away
+$ chef exec rake clean          # blow everything away
 ```
 
 ## Known Issues and Workarounds
