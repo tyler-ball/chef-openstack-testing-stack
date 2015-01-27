@@ -10,4 +10,4 @@ validation_key           "#{current_dir}/validator.pem"
 chef_server_url          "https://api.opscode.com/organizations/my_awesome_org"
 cache_type               'BasicFile'
 cache_options( :path => "#{ENV['HOME']}/.chef/checksums" )
-cookbook_path            ["#{current_dir}/../berks-cookbooks"]
+cookbook_path            ["#{current_dir}/../cookbooks"]
