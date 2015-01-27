@@ -8,7 +8,23 @@
     "default_attributes": {
     },
     "override_attributes": {
+        "yum": {
+            "repo": {
+                "baseurl": "https://repos.fedorapeople.org/repos/openstack/openstack-juno/epel-7"
+            },
+            "epel": {
+                "mirrorlist": "http://mirrors.fedoraproject.org/mirrorlist?repo=epel-7&arch=$basearch",
+                "gpgkey": "http://dl.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-7"
+            }
+        },
+        "mysql": {
+            "allow_remote_root": true,
+            "root_network_acl": ["%"]
+        },
         "openstack": {
+            "yum": {
+                "uri": "https://repos.fedorapeople.org/repos/openstack/openstack-juno/epel-7"
+            },
             "endpoints": {
                 "bind-host": "0.0.0.0",
                 "host": "0.0.0.0"
