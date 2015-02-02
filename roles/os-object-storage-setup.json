@@ -1,0 +1,8 @@
+{
+  "name": "os-object-storage-setup",
+  "description": "OpenStack object storage setup",
+  "run_list": [
+    "role[os-base]",
+    "recipe[openstack-object-storage::setup]"
+  ]
+}

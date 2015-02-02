@@ -23,7 +23,6 @@ $ cd testing-stack
 $ vi vagrant_linux.rb # change the 'vm.box' to the box you'd like to run.
 $ chef exec rake berks_vendor
 $ chef exec ruby -e "require 'openssl'; puts OpenSSL::PKey::RSA.new(2048).to_pem" > .chef/validator.pem
-$ export CHEF_DRIVER=vagrant
 ```
 
 The stackforge OpenStack cookbooks by default use databags for configuring passwords.  There are four
@@ -87,11 +86,25 @@ If you would like to use the OpenStack dashboard you should go to https://localh
 
 ## Cleanup
 
-To cleanup all the nodes and start over again with a different environment or different environment attribute overrides, using the following rake command.
+To remove all the nodes and start over again with a different environment or different environment attribute overrides, using the following rake command.
 
 ```bash
-$ chef exec rake clean          # blow everything away
+$ chef exec rake destroy_machines
 ```
+
+To refresh all the cookbooks, use the following rake commands.  
+
+```bash
+$ chef exec rake destroy_cookbooks
+$ chef exec rake berks_vendor
+```
+
+To cleanup everything, use the following rake command.  
+
+```bash
+$ chef exec rake clean
+```
+
 
 ## Known Issues and Workarounds
 
