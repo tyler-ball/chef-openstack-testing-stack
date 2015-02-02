@@ -41,7 +41,7 @@ task :destroy_machines do
 end
 
 desc "blow everything away"
-task :clean => [ :destroy_machines, :destory_cookbooks ]
+task :clean => [ 'destroy_machines', 'destroy_cookbooks' ]
 
 # Setup the chef client logging level according to the Rake output level
 def _setup
