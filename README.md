@@ -37,6 +37,8 @@ files. I wrote this on my MacBook Pro with an `en0` you're mileage may vary.
 kernel `3.13.0-24-generic` has networking issues, and the best way to resolve this is
 via: `apt-get install linux-image-generic-lts-utopic`. This will install at least `3.16.0` from the Utopic hardware enablement.
 
+**NOTE**: There is not Gemfile, it's assume that all the needed gems are provided by the Chef DK.
+
 ## Rake Deploy Commands
 
 These commands will spin up various OpenStack cluster configurations, the simplest being the all-in-one controller with Nova networking.
