@@ -1,7 +1,7 @@
 source "https://supermarket.getchef.com"
 
 cookbook 'apache2', '3.0.0'
-cookbook 'apt', '2.3.8'
+cookbook 'apt', '2.6.1'
 cookbook 'aws', '2.1.1'
 cookbook 'build-essential', '1.4.2'
 cookbook 'database', '2.2.0'
