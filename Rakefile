@@ -2,7 +2,7 @@
 
 
 task :destroy_all do
-  sh %{chef exec chef-client -z destroy_all.rb && rm -rf Gemfile.lock && rm -rf Berksfile.lock && rm -rf cookbooks/}
+  sh %{chef exec chef-client -z destroy_all.rb && rm -rf Berksfile.lock && rm -rf cookbooks/}
 end
 
 desc "Destroy Machines"
