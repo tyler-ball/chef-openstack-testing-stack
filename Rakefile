@@ -43,3 +43,8 @@ end
 
 desc "Blow everything away"
 task clean: [:destroy_all]
+
+# CI tasks
+require 'rubocop/rake_task'
+desc 'Run RuboCop'
+RuboCop::RakeTask.new(:rubocop)
