@@ -16,6 +16,8 @@ config.vm.network "public_network", ip: "172.16.100.#{ip_suff}", bridge: 'en0: W
 config.vm.network "private_network", ip: "192.168.200.#{ip_suff}"
 ENDCONFIG
       role 'os-object-storage-object'
+      role 'os-object-storage-container'
+      role 'os-object-storage-account'
       chef_environment 'vagrant-multi-nova'
       file '/etc/chef/openstack_data_bag_secret',"#{File.dirname(__FILE__)}/.chef/encrypted_data_bag_secret"
       converge true
@@ -45,9 +47,8 @@ ENDCONFIG
 machine 'controller' do
   add_machine_options :vagrant_config => controller_config
   role 'os-object-storage-management'
-  role 'os-object-storage-container'
   role 'os-object-storage-proxy'
-  role 'os-object-storage-account'
+
   recipe 'openstack-common::openrc'
   chef_environment 'vagrant-multi-nova'
   file '/etc/chef/openstack_data_bag_secret',"#{File.dirname(__FILE__)}/.chef/encrypted_data_bag_secret"
