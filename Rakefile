@@ -41,5 +41,10 @@ task :multi_nova do
   run_command('chef-client -z vagrant_linux.rb multi-nova.rb')
 end
 
+desc "Swift-cluster build"
+task :swift_cluster do
+  run_command('chef-client -z vagrant_linux.rb swift-cluster.rb')
+end
+
 desc "Blow everything away"
 task clean: [:destroy_all]
