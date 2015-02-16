@@ -1,4 +1,4 @@
 {
-  "name": "_default",
-  "description": "The default Chef environment"
+    "name": "_default",
+    "description": "The default Chef environment"
 }

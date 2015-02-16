@@ -1,12 +1,12 @@
 {
-  "name": "vagrant-multi-nova",
-  "description": "Environment used in testing the upstream cookbooks and reference Chef repository with vagrant. To be used with the Vagrantfile-multi-neutron vagrantfile. Defines the necessary attributes for a working mutltinode (1 controller/n computes) openstack deployment, using neutron (with gre tunnels between hosts) for the networking component.",
-  "cookbook_versions": {
-  },
-  "json_class": "Chef::Environment",
-  "chef_type": "environment",
-  "default_attributes": {
-  },
+    "name": "vagrant-multi-nova",
+    "description": "Environment used in testing the upstream cookbooks and reference Chef repository with vagrant. To be used with the Vagrantfile-multi-neutron vagrantfile. Defines the necessary attributes for a working mutltinode (1 controller/n computes) openstack deployment, using neutron (with gre tunnels between hosts) for the networking component.",
+    "cookbook_versions": {
+    },
+    "json_class": "Chef::Environment",
+    "chef_type": "environment",
+    "default_attributes": {
+    },
     "override_attributes": {
         "yum": {
             "repo": {
