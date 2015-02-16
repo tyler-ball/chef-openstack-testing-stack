@@ -2,7 +2,7 @@ require 'chef/provisioning'
 
 
 machine_batch do
-  [ ['object01', 61], ['object02', 62], ['object03', 63] ].each do |name, ip_suff|
+  [ ['container01', 61], ['container02', 62], ['container03', 63] ].each do |name, ip_suff|
     machine name do
       add_machine_options :vagrant_config => <<-ENDCONFIG
 config.vm.provider "virtualbox" do |v|
@@ -44,11 +44,10 @@ containter_config = <<-ENDCONFIG
   config.vm.network "private_network", ip: "192.168.200.60"
 ENDCONFIG
 
-machine 'controller' do
+machine 'management' do
   add_machine_options :vagrant_config => controller_config
   role 'os-object-storage-management'
   role 'os-object-storage-proxy'
-
   recipe 'openstack-common::openrc'
   chef_environment 'vagrant-multi-nova'
   file '/etc/chef/openstack_data_bag_secret',"#{File.dirname(__FILE__)}/.chef/encrypted_data_bag_secret"
