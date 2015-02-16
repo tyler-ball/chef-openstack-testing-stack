@@ -9,6 +9,6 @@ vagrant_box 'ubuntu14' do
 end
 
 with_driver "vagrant:#{File.dirname(__FILE__)}/vms"
-with_machine_options :vagrant_options => {
+with_machine_options vagrant_options: {
   'vm.box' => 'ubuntu14'
 }
