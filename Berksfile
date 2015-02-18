@@ -4,7 +4,7 @@ cookbook 'apache2', '3.0.0'
 cookbook 'apt', '2.6.1'
 cookbook 'aws', '2.1.1'
 cookbook 'build-essential', '1.4.2'
-cookbook 'database', '2.2.0'
+#cookbook 'database', '2.2.0'
 cookbook 'erlang', '1.4.2'
 cookbook 'memcached', '1.7.2'
 cookbook 'mysql'
@@ -18,6 +18,7 @@ cookbook 'yum', '3.5.2'
 cookbook 'selinux', '0.7.2'
 cookbook 'yum-epel', '0.6.0'
 cookbook 'statsd', github: 'att-cloud/cookbook-statsd'
+cookbook "ceph", github: "ceph/ceph-cookbook", branch: "master"
 
 cookbook 'openstack-block-storage', github: 'stackforge/cookbook-openstack-block-storage', branch: "master"
 cookbook 'openstack-common', github: 'stackforge/cookbook-openstack-common', branch: "master"
